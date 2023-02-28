@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codings on My New Hugo Site</title><link>https://sloplerol.github.io/coding/</link><description>Recent content in Codings on My New Hugo Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 28 Feb 2023 17:38:53 +0800</lastBuildDate><atom:link href="https://sloplerol.github.io/coding/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux</title><link>https://sloplerol.github.io/coding/linux/</link><pubDate>Tue, 28 Feb 2023 17:38:53 +0800</pubDate><guid>https://sloplerol.github.io/coding/linux/</guid><description>Linux ⚙️操作系统发展史 Unix Minix 早期Linux ⚡️Linux介绍 Kernel Releases Unix目录 Linux目录 Vim和VI文本编译器 Vim和VI是什么 VIM的模式 主机与虚拟机联系 测试是否主机和虚拟机之间是否能ping通 VMware提供三种网络连接方式 指定修改静态ip 修改IP出现的问题 修改主机名 进程与服务 Linux运行级别 关机重启操作 💥Linux命令的使用 基本介绍 拓展 帮助型命令 文件目录类 时间日期类 用户管理类 搜索查找类 解压缩类 磁盘查看和分区类 进程管理类 软件包管理 克隆虚拟机 🔥Shell的拓展 Shell巩固(命令解释器) Shell脚本 读取控制台输入 函数 正则表达式 文本处理工具 巩固 操作系统发展史 Unix
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codings on My New Hugo Site</title><link>https://sloplerol.github.io/coding/</link><description>Recent content in Codings on My New Hugo Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 01 Mar 2023 07:45:54 +0800</lastBuildDate><atom:link href="https://sloplerol.github.io/coding/index.xml" rel="self" type="application/rss+xml"/><item><title>节点搭建</title><link>https://sloplerol.github.io/coding/%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BA/</link><pubDate>Wed, 01 Mar 2023 07:45:54 +0800</pubDate><guid>https://sloplerol.github.io/coding/%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BA/</guid><description>节点搭建系列 网络通信的基本原理 被墙的原理 上手搭建shadowsocks服务 节点搭建四 节点搭建五 节点搭建六 节点搭建七 网络通信的基本原理 OSI模型 信息 应用层 请告诉我百度的ip (HTTP) 传输层 封装本机端口和DNS服务器端口 (TCP,UDP) 网络层 封装原ip和目标ip 数据链路层 封装原MAC地址和目标MAC地址 物理层 通过网卡传输数据 请求网址的瞬间发生的事情(DNS解析)
+开始发送请求
+检查本地缓存是否之前访问过该网址，检查hosts文件查看是否存在映射关系
+将该请求发送给本地运行在应用层的DNS服务器
+传输层对数据进行封装 封装端口 本机端口封装为本地DNS服务器默认端口
+添加本地端口 目标端口 网络层 封装ip 本机ip封装为本地DNS服务器ip
+添加本地ip 目标ip 数据链路层 封装ip后本机在同一网段内找不到该ip，请求网关，由于局域网内通信是通过MAC地址，且网关的MAC地址和路由器的MAC地址不匹配，于是通过ARK协议进行通信
+添加本地MAC地址 目标MAC地址 物理层 通过网卡发送数据
+交换机
+可以解析物理层和数据链路层
+交换机拿到数据查看数据链路层封装的MAC地址去发送给路由器
+路由器
+路由器能解析后三层 能查看到封装好的ip 发现本地没有就会通过WAN口转发到公网路由
+匹配服务器
+当匹配到DNS服务器后，DNS服务器会从物理层开始逐层拆解之前封装的数据最后获取到域名对应的ip地址 返回数据 &amp;mdash;此处主要是拆解数据&amp;mdash;
+当拿到ip来到应用层再次执行相反流程 来到传输层将端口反制 来到网络层将ip反制 来到链路层将MAC反制 路由跳转 通过MAC地址匹配到本地路由应用层通过NAT更改目标ip 来到交换机通过ip去找本机MAC地址 在来到本机逐层拆解最后拿到百度的 ip地址 注意事项
+每一次路由跳转的时候都会修改自己的MAC地址 NAT映射：将传输过来的数据进行ip和port保存，将wan口的ip放置数据包内端口随机分配 再次拿出来进行保存 形成了一组映射关系 HTTP默认端口为80端口 被墙的原理 GFW防火墙禁止访问的方式</description></item><item><title>Linux</title><link>https://sloplerol.github.io/coding/linux/</link><pubDate>Tue, 28 Feb 2023 17:38:53 +0800</pubDate><guid>https://sloplerol.github.io/coding/linux/</guid><description>Linux ⚙️操作系统发展史 Unix Minix 早期Linux ⚡️Linux介绍 Kernel Releases Unix目录 Linux目录 Vim和VI文本编译器 Vim和VI是什么 VIM的模式 主机与虚拟机联系 测试是否主机和虚拟机之间是否能ping通 VMware提供三种网络连接方式 指定修改静态ip 修改IP出现的问题 修改主机名 进程与服务 Linux运行级别 关机重启操作 💥Linux命令的使用 基本介绍 拓展 帮助型命令 文件目录类 时间日期类 用户管理类 搜索查找类 解压缩类 磁盘查看和分区类 进程管理类 软件包管理 克隆虚拟机 🔥Shell的拓展 Shell巩固(命令解释器) Shell脚本 读取控制台输入 函数 正则表达式 文本处理工具 巩固 操作系统发展史 Unix
 1965年左后由贝尔实验室、麻省理工学院 以及 通用电气共同发起了Multics项目，想让大型主机支持300台终端
 1969年前后这个项目进度缓慢，资金短缺，贝尔实验室退出了研究
 1969年从这个项目中退出的Ken Thompson当时在实验室无聊时，为了让一台空闲的电脑上能够运行“星际旅行”游行，在8月份左右趁着其妻子探亲的时间，用了1个月的时间编写出了 Unix操作系统的原型

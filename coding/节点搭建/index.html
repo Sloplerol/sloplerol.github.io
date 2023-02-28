@@ -1,0 +1,61 @@
+<!doctype html><html dir=ltr lang=en data-theme class="html theme--light"><head><title>|
+节点搭建</title><meta charset=utf-8><meta name=generator content="Hugo 0.110.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=author content><meta name=description content><link rel=stylesheet href=/scss/main.min.5794be192d21535bdd301561e043a96b6adbad2b5c08279deff459e4661c613f.css integrity="sha256-V5S+GS0hU1vdMBVh4EOpa2rbrStcCCed7/RZ5GYcYT8=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc=" crossorigin=anonymous type=text/css><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=https://sloplerol.github.io/coding/%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BA/><script type=text/javascript src=/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js integrity="sha256-+RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.d6d329d93844b162e8bed1e915619625ca91687952177552b9b3e211014a2957.js integrity="sha256-1tMp2ThEsWLovtHpFWGWJcqRaHlSF3VSubPiEQFKKVc=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="节点搭建"><meta name=twitter:description content="节点搭建系列 网络通信的基本原理 被墙的原理 上手搭建shadowsocks服务 节点搭建四 节点搭建五 节点搭建六 节点搭建七 网络通信的基本原理 OSI模型 信息 应用层 请告诉我百度的ip (HTTP) 传输层 封装本机端口和DNS服务器端口 (TCP,UDP) 网络层 封装原ip和目标ip 数据链路层 封装原MAC地址和目标MAC地址 物理层 通过网卡传输数据 请求网址的瞬间发生的事情(DNS解析)
+开始发送请求
+检查本地缓存是否之前访问过该网址，检查hosts文件查看是否存在映射关系
+将该请求发送给本地运行在应用层的DNS服务器
+传输层对数据进行封装 封装端口 本机端口封装为本地DNS服务器默认端口
+添加本地端口 目标端口 网络层 封装ip 本机ip封装为本地DNS服务器ip
+添加本地ip 目标ip 数据链路层 封装ip后本机在同一网段内找不到该ip，请求网关，由于局域网内通信是通过MAC地址，且网关的MAC地址和路由器的MAC地址不匹配，于是通过ARK协议进行通信
+添加本地MAC地址 目标MAC地址 物理层 通过网卡发送数据
+交换机
+可以解析物理层和数据链路层
+交换机拿到数据查看数据链路层封装的MAC地址去发送给路由器
+路由器
+路由器能解析后三层 能查看到封装好的ip 发现本地没有就会通过WAN口转发到公网路由
+匹配服务器
+当匹配到DNS服务器后，DNS服务器会从物理层开始逐层拆解之前封装的数据最后获取到域名对应的ip地址 返回数据 &mdash;此处主要是拆解数据&mdash;
+当拿到ip来到应用层再次执行相反流程 来到传输层将端口反制 来到网络层将ip反制 来到链路层将MAC反制 路由跳转 通过MAC地址匹配到本地路由应用层通过NAT更改目标ip 来到交换机通过ip去找本机MAC地址 在来到本机逐层拆解最后拿到百度的 ip地址 注意事项
+每一次路由跳转的时候都会修改自己的MAC地址 NAT映射：将传输过来的数据进行ip和port保存，将wan口的ip放置数据包内端口随机分配 再次拿出来进行保存 形成了一组映射关系 HTTP默认端口为80端口 被墙的原理 GFW防火墙禁止访问的方式"><meta property="og:title" content="节点搭建"><meta property="og:description" content="节点搭建系列 网络通信的基本原理 被墙的原理 上手搭建shadowsocks服务 节点搭建四 节点搭建五 节点搭建六 节点搭建七 网络通信的基本原理 OSI模型 信息 应用层 请告诉我百度的ip (HTTP) 传输层 封装本机端口和DNS服务器端口 (TCP,UDP) 网络层 封装原ip和目标ip 数据链路层 封装原MAC地址和目标MAC地址 物理层 通过网卡传输数据 请求网址的瞬间发生的事情(DNS解析)
+开始发送请求
+检查本地缓存是否之前访问过该网址，检查hosts文件查看是否存在映射关系
+将该请求发送给本地运行在应用层的DNS服务器
+传输层对数据进行封装 封装端口 本机端口封装为本地DNS服务器默认端口
+添加本地端口 目标端口 网络层 封装ip 本机ip封装为本地DNS服务器ip
+添加本地ip 目标ip 数据链路层 封装ip后本机在同一网段内找不到该ip，请求网关，由于局域网内通信是通过MAC地址，且网关的MAC地址和路由器的MAC地址不匹配，于是通过ARK协议进行通信
+添加本地MAC地址 目标MAC地址 物理层 通过网卡发送数据
+交换机
+可以解析物理层和数据链路层
+交换机拿到数据查看数据链路层封装的MAC地址去发送给路由器
+路由器
+路由器能解析后三层 能查看到封装好的ip 发现本地没有就会通过WAN口转发到公网路由
+匹配服务器
+当匹配到DNS服务器后，DNS服务器会从物理层开始逐层拆解之前封装的数据最后获取到域名对应的ip地址 返回数据 &mdash;此处主要是拆解数据&mdash;
+当拿到ip来到应用层再次执行相反流程 来到传输层将端口反制 来到网络层将ip反制 来到链路层将MAC反制 路由跳转 通过MAC地址匹配到本地路由应用层通过NAT更改目标ip 来到交换机通过ip去找本机MAC地址 在来到本机逐层拆解最后拿到百度的 ip地址 注意事项
+每一次路由跳转的时候都会修改自己的MAC地址 NAT映射：将传输过来的数据进行ip和port保存，将wan口的ip放置数据包内端口随机分配 再次拿出来进行保存 形成了一组映射关系 HTTP默认端口为80端口 被墙的原理 GFW防火墙禁止访问的方式"><meta property="og:type" content="article"><meta property="og:url" content="https://sloplerol.github.io/coding/%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BA/"><meta property="article:section" content="coding"><meta property="article:published_time" content="2023-03-01T07:45:54+08:00"><meta property="article:modified_time" content="2023-03-01T07:45:54+08:00"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"coding","name":"节点搭建","headline":"节点搭建","alternativeHeadline":"","description":"
+      
+        节点搭建系列 网络通信的基本原理 被墙的原理 上手搭建shadowsocks服务 节点搭建四 节点搭建五 节点搭建六 节点搭建七 网络通信的基本原理 OSI模型 信息 应用层 请告诉我百度的ip (HTTP) 传输层 封装本机端口和DNS服务器端口 (TCP,UDP) 网络层 封装原ip和目标ip 数据链路层 封装原MAC地址和目标MAC地址 物理层 通过网卡传输数据 请求网址的瞬间发生的事情(DNS解析)\n开始发送请求\n检查本地缓存是否之前访问过该网址，检查hosts文件查看是否存在映射关系\n将该请求发送给本地运行在应用层的DNS服务器\n传输层对数据进行封装 封装端口 本机端口封装为本地DNS服务器默认端口\n添加本地端口 目标端口 网络层 封装ip 本机ip封装为本地DNS服务器ip\n添加本地ip 目标ip 数据链路层 封装ip后本机在同一网段内找不到该ip，请求网关，由于局域网内通信是通过MAC地址，且网关的MAC地址和路由器的MAC地址不匹配，于是通过ARK协议进行通信\n添加本地MAC地址 目标MAC地址 物理层 通过网卡发送数据\n交换机\n可以解析物理层和数据链路层\n交换机拿到数据查看数据链路层封装的MAC地址去发送给路由器\n路由器\n路由器能解析后三层 能查看到封装好的ip 发现本地没有就会通过WAN口转发到公网路由\n匹配服务器\n当匹配到DNS服务器后，DNS服务器会从物理层开始逐层拆解之前封装的数据最后获取到域名对应的ip地址 返回数据 \u0026mdash;此处主要是拆解数据\u0026mdash;\n当拿到ip来到应用层再次执行相反流程 来到传输层将端口反制 来到网络层将ip反制 来到链路层将MAC反制 路由跳转 通过MAC地址匹配到本地路由应用层通过NAT更改目标ip 来到交换机通过ip去找本机MAC地址 在来到本机逐层拆解最后拿到百度的 ip地址 注意事项\n每一次路由跳转的时候都会修改自己的MAC地址 NAT映射：将传输过来的数据进行ip和port保存，将wan口的ip放置数据包内端口随机分配 再次拿出来进行保存 形成了一组映射关系 HTTP默认端口为80端口 被墙的原理 GFW防火墙禁止访问的方式
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/sloplerol.github.io\/coding\/%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BA\/"},"author":{"@type":"Person","name":""},"creator":{"@type":"Person","name":""},"accountablePerson":{"@type":"Person","name":""},"copyrightHolder":{"@type":"Person","name":""},"copyrightYear":"2023","dateCreated":"2023-03-01T07:45:54.00Z","datePublished":"2023-03-01T07:45:54.00Z","dateModified":"2023-03-01T07:45:54.00Z","publisher":{"@type":"Organization","name":null,"url":"https://sloplerol.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/sloplerol.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/sloplerol.github.io\/coding\/%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BA\/","wordCount":"114","genre":[],"keywords":[]}</script></head><body class=body><div class=wrapper><aside class=wrapper__sidebar><div class="sidebar
+animated fadeInDown"><div class=sidebar__content><div class=sidebar__introduction><img class=sidebar__introduction-profileimage src=/ alt="profile picture"><div class=sidebar__introduction-title><a href=/></a></div><div class=sidebar__introduction-description><p></p></div></div><ul class=sidebar__list></ul></div><footer class="footer footer__sidebar"><ul class=footer__list><li class=footer__item>&copy;
+2023</li></ul></footer><script type=text/javascript src=/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ=" crossorigin=anonymous></script></div></aside><main class=wrapper__main><header class=header><div class="animated fadeInDown"><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true class=navbar-burger__line></span>
+<span aria-hidden=true class=navbar-burger__line></span>
+<span aria-hidden=true class=navbar-burger__line></span></a><nav class=nav><ul class=nav__list id=navMenu></ul><ul class="nav__list nav__list--end"><li class=nav__list-item><div class=themeswitch><a title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></li></ul></nav></div></header><div class="post
+animated fadeInDown"><div class=post__content><h1>节点搭建</h1><h2 id=节点搭建系列>节点搭建系列</h2><ul><li>网络通信的基本原理</li><li>被墙的原理</li><li>上手搭建shadowsocks服务</li><li>节点搭建四</li><li>节点搭建五</li><li>节点搭建六</li><li>节点搭建七</li></ul><h3 id=网络通信的基本原理>网络通信的基本原理</h3><table><thead><tr><th style=text-align:left>OSI模型</th><th style=text-align:center>信息</th></tr></thead><tbody><tr><td style=text-align:left>应用层</td><td style=text-align:center>请告诉我百度的ip (HTTP)</td></tr><tr><td style=text-align:left>传输层</td><td style=text-align:center>封装本机端口和DNS服务器端口 (TCP,UDP)</td></tr><tr><td style=text-align:left>网络层</td><td style=text-align:center>封装原ip和目标ip</td></tr><tr><td style=text-align:left>数据链路层</td><td style=text-align:center>封装原MAC地址和目标MAC地址</td></tr><tr><td style=text-align:left>物理层</td><td style=text-align:center>通过网卡传输数据</td></tr></tbody></table><p><strong>请求网址的瞬间发生的事情(DNS解析)</strong></p><ul><li><p>开始发送请求</p><ol><li><p>检查本地缓存是否之前访问过该网址，检查hosts文件查看是否存在映射关系</p></li><li><p>将该请求发送给本地运行在应用层的DNS服务器</p></li><li><p>传输层对数据进行封装 封装端口 本机端口封装为本地DNS服务器默认端口</p><pre tabindex=0><code>添加本地端口 目标端口
+</code></pre></li><li><p>网络层 封装ip 本机ip封装为本地DNS服务器ip</p><pre tabindex=0><code>添加本地ip 目标ip
+</code></pre></li><li><p>数据链路层 封装ip后本机在同一网段内找不到该ip，请求网关，由于局域网内通信是通过MAC地址，且网关的MAC地址和路由器的MAC地址不匹配，于是通过ARK协议进行通信</p><pre tabindex=0><code>添加本地MAC地址 目标MAC地址
+</code></pre></li><li><p>物理层 通过网卡发送数据</p></li></ol></li><li><p>交换机</p><blockquote><p>可以解析物理层和数据链路层</p></blockquote><p><strong>交换机拿到数据查看数据链路层封装的MAC地址去发送给路由器</strong></p></li><li><p>路由器</p><blockquote><p>路由器能解析后三层 能查看到封装好的ip 发现本地没有就会通过WAN口转发到公网路由</p></blockquote></li><li><p>匹配服务器</p><ul><li>当匹配到DNS服务器后，DNS服务器会从物理层开始逐层拆解之前封装的数据最后获取到域名对应的ip地址</li></ul></li><li><p>返回数据 <strong>&mdash;此处主要是拆解数据&mdash;</strong></p><ol><li>当拿到ip来到应用层再次执行相反流程</li><li>来到传输层将端口反制</li><li>来到网络层将ip反制</li><li>来到链路层将MAC反制</li><li>路由跳转</li><li>通过MAC地址匹配到本地路由应用层通过NAT更改目标ip</li><li>来到交换机通过ip去找本机MAC地址</li><li>在来到本机逐层拆解最后拿到百度的 ip地址</li></ol></li><li><p>注意事项</p><ul><li>每一次路由跳转的时候都会修改自己的MAC地址</li><li>NAT映射：将传输过来的数据进行ip和port保存，将wan口的ip放置数据包内端口随机分配 再次拿出来进行保存 形成了一组映射关系</li><li>HTTP默认端口为80端口</li></ul></li></ul><h3 id=被墙的原理>被墙的原理</h3><p><strong>GFW防火墙禁止访问的方式</strong></p><ol><li><p>DNS污染</p><blockquote><p>寻找DNS服务器正常但是在返回的时候防火墙看到你应用层的内容 于是篡改ip地址 使你请求错误的服务器地址</p></blockquote></li><li><p>TCP重置攻击</p><blockquote><p>防火墙通过传输层的ip判断你访问的网站是否被列为黑名单，如果是返回一条错误的信息给你，或者是ip没被列为黑名单，但是应用层的数据是黑名单里的内容，本质上还是自己的意图被发现了，所以我们可以通过加密的方式进行隐藏目的</p></blockquote></li></ol><p><strong>思考</strong>：如何解决DNS污染呢？</p><blockquote><p>走本地hosts映射，不发送DNS请求(早起翻墙的手段)</p></blockquote><p><strong>VPN的弊端:</strong> 虽然你伪装了数据包的内容但是，GFW防火墙是知道你建立的是VPN连接，如果你长时间进行大流量连接</p><p>&mdash;- 基于上述情况我们了解到了需要对数据加密的同时也需要对流量进行加密，shadowsocks就此诞生</p><p><strong>shadowsocks配置</strong></p><ul><li><p>浏览器</p><pre tabindex=0><code>代理服务器为本地127.0.0.1
+代理端口是shadowsocks监听的端口
+</code></pre></li><li><p>shadowsocks客户端实现原理</p><blockquote><p>拿到请求对数据进行加密
+同样的流程来到防火墙
+但是防火墙并没有发现你有违规的点
+路由跳转最终跳到你那台shadowsocks服务器
+解密帮你去访问目标网站
+拿到数据加密返回数据给你</p></blockquote><ul><li>漏洞：防火墙会主动发送请求给你这台shadowsocks服务器，判断你是否开启了shadowsocks服务</li></ul></li></ul><h3 id=上手搭建shadowsocks服务>上手搭建shadowsocks服务</h3><ul><li><p>VPS是什么</p><blockquote><p><em>VPS</em>(Virtual Private Server 虚拟专用服务器)技术，每个<em>VPS</em>都可分配独立公网IP地址、独立操作系统</p></blockquote></li><li><p>VPS操作</p><ul><li><p>购买VPS，这里推荐Vultr，可以随时去摧毁服务，停止计费</p></li><li><p>安装好VPS后，通过ssh连接VPS，这里使用的是finalshell</p></li><li><p>连接好之后安装shadowsocks服务</p><pre tabindex=0><code>apt install shadowsocks-libev //Ubuntu
+</code></pre></li><li><p>查看shadowsocks状态：</p><pre tabindex=0><code>systemctl status shadowsocks-libev.service //发现安装好后默认情况下已经开启了
+</code></pre></li></ul></li></ul></div><div class=post__footer></div></div></main></div><footer class="footer footer__base"><ul class=footer__list><li class=footer__item>&copy;
+2023</li></ul></footer><script type=text/javascript src=/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ=" crossorigin=anonymous></script></body></html>
