@@ -2,3 +2,9 @@ baseURL = 'https://sloplerol.github.io/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = "anatole"
+[languages.zh-cn.params.home.profile]
+	enable = true
+	avatarURL = "/images/avatar.jpeg"
+[author]
+	name = "Satrol"
+license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0 国际许可协议</a>'
