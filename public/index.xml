@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://example.org/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Feb 2023 17:38:53 +0800</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>http://example.org/coding/linux/</link>
+      <pubDate>Tue, 28 Feb 2023 17:38:53 +0800</pubDate>
+      
+      <guid>http://example.org/coding/linux/</guid>
+      
+        <description>Linux ⚙️操作系统发展史 Unix Minix 早期Linux ⚡️Linux介绍 Kernel Releases Unix目录 Linux目录 Vim和VI文本编译器 Vim和VI是什么 VIM的模式 主机与虚拟机联系 测试是否主机和虚拟机之间是否能ping通 VMware提供三种网络连接方式 指定修改静态ip 修改IP出现的问题 修改主机名 进程与服务 Linux运行级别 关机重启操作 💥Linux命令的使用 基本介绍 拓展 帮助型命令 文件目录类 时间日期类 用户管理类 搜索查找类 解压缩类 磁盘查看和分区类 进程管理类 软件包管理 克隆虚拟机 🔥Shell的拓展 Shell巩固(命令解释器) Shell脚本 读取控制台输入 函数 正则表达式 文本处理工具 巩固 操作系统发展史 Unix
+1965年左后由贝尔实验室、麻省理工学院 以及 通用电气共同发起了Multics项目，想让大型主机支持300台终端
+1969年前后这个项目进度缓慢，资金短缺，贝尔实验室退出了研究
+1969年从这个项目中退出的Ken Thompson当时在实验室无聊时，为了让一台空闲的电脑上能够运行“星际旅行”游行，在8月份左右趁着其妻子探亲的时间，用了1个月的时间编写出了 Unix操作系统的原型
+1970年，美国贝尔实验室的 Ken Thompson，以 BCPL语言 为基础，设计出很简单且很接近硬件的 B语言（取BCPL的首字母），并且他用B语言写了第一个UNIX操作系统。 因为B语言的跨平台性较差，为了能够在其他的电脑上也能够运行这个非常棒的Unix操作系统，Dennis Ritchie和Ken Thompson 从B语言的基础上准备研究一个更好的语言
+1972年，美国贝尔实验室的 Dennis Ritchie在B语言的基础上最终设计出了一种新的语言，他取了BCPL的第二个字母作为这种语言的名字，这就是C语言
+1973年初，C语言的主体完成。Thompson和Ritchie迫不及待地开始用它完全重写了现在大名鼎鼎的Unix操作系统
+Minix
+由于Unix的私有化，Andrew S. Tanenbaum(塔能鲍姆)教授自行开发与UNIX兼容的操作系统，为了避免和Unix版权上的争议，起名为mini-unix，即Mixin</description>
+      
+    </item>
+    
+  </channel>
+</rss>
