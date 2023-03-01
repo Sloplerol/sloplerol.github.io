@@ -2,4 +2,15 @@ baseURL = 'https://sloplerol.github.io/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = "anatole"
+license = "MIT"
+licenselink = "Link to theme's license"
+description = "Merge with Ocean's intelligence of Star"
+homepage = "https://github.com/lxndrblz/anatole/"
+tags = ["blog", "life","programming_language"]
+features = ["some", "awesome", "features"]
+min_version = "0.59.1"
+
+[author]
+    name = "Satrol"
+    homepage = "https://sloplerol.github.io/"
 
